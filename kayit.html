@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AntalyaUsta - Kayıt Ol</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:linear-gradient(135deg,#0878bd,#11a4d3);
+  min-height:100vh;
+  padding:25px 15px;
+}
+
+.logo{
+  text-align:center;
+  font-size:36px;
+  font-weight:bold;
+  color:white;
+  margin-bottom:20px;
+}
+
+.logo span{
+  color:#ff7900;
+}
+
+.card{
+  background:white;
+  max-width:450px;
+  margin:auto;
+  padding:25px;
+  border-radius:22px;
+  box-shadow:0 12px 35px rgba(0,0,0,.18);
+}
+
+h1{
+  text-align:center;
+  color:#126eaa;
+  margin-bottom:8px;
+}
+
+.aciklama{
+  text-align:center;
+  color:#666;
+  margin-bottom:25px;
+}
+
+.tipler{
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.tip{
+  flex:1;
+  padding:15px 5px;
+  border:2px solid #ddd;
+  border-radius:12px;
+  text-align:center;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.tip.aktif{
+  border-color:#ff7900;
+  background:#fff4e9;
+  color:#e66d00;
+}
+
+label{
+  display:block;
+  margin:14px 0 6px;
+  font-weight:bold;
+  color:#333;
+}
+
+input,select{
+  width:100%;
+  padding:14px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  font-size:16px;
+}
+
+button{
+  width:100%;
+  padding:16px;
+  margin-top:22px;
+  border:0;
+  border-radius:12px;
+  background:#ff7900;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.giris{
+  text-align:center;
+  margin-top:18px;
+  color:#666;
+}
+
+.giris a{
+  color:#126eaa;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+.geri{
+  display:block;
+  text-align:center;
+  margin-top:20px;
+  color:white;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="logo">Antalya<span>Usta</span></div>
+
+<div class="card">
+
+<h1>Kayıt Ol</h1>
+<p class="aciklama">Hemen ücretsiz hesabını oluştur</p>
+
+<div class="tipler">
+  <div class="tip aktif" onclick="sec(this,'Müşteri')">
+    👤 Müşteriyim
+  </div>
+
+  <div class="tip" onclick="sec(this,'Hizmet Veren')">
+    🛠️ Hizmet Verenim
+  </div>
+</div>
+
+<form onsubmit="kayit(event)">
+
+<label>Ad Soyad</label>
+<input type="text" id="ad" placeholder="Adınız ve soyadınız" required>
+
+<label>Telefon</label>
+<input type="tel" id="telefon" placeholder="05XX XXX XX XX" required>
+
+<label>E-posta</label>
+<input type="email" id="email" placeholder="ornek@email.com" required>
+
+<label>İlçe</label>
+<select id="ilce" required>
+<option value="">İlçe seç</option>
+<option>Muratpaşa</option>
+<option>Kepez</option>
+<option>Konyaaltı</option>
+<option>Aksu</option>
+<option>Döşemealtı</option>
+<option>Alanya</option>
+<option>Manavgat</option>
+<option>Serik</option>
+<option>Kemer</option>
+</select>
+
+<label>Şifre</label>
+<input type="password" id="sifre" placeholder="En az 6 karakter" minlength="6" required>
+
+<button type="submit">Ücretsiz Kayıt Ol</button>
+
+</form>
+
+<div class="giris">
+Zaten hesabın var mı? <a href="#">Giriş Yap</a>
+</div>
+
+</div>
+
+<a class="geri" href="index.html">← Ana Sayfaya Dön</a>
+
+<script>
+let hesapTipi="Müşteri";
+
+function sec(element,tip){
+  document.querySelectorAll(".tip").forEach(x=>x.classList.remove("aktif"));
+  element.classList.add("aktif");
+  hesapTipi=tip;
+}
+
+function kayit(e){
+  e.preventDefault();
+
+  alert(
+    "Kayıt formu hazır!\\n\\n" +
+    "Hesap türü: " + hesapTipi +
+    "\\n\\nBir sonraki aşamada gerçek veritabanına bağlan
